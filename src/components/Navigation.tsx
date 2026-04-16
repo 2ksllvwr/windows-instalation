@@ -29,7 +29,8 @@ export default function Navigation({
     <div
       className={[
         "nav-autohide absolute bottom-0 left-0 right-0 z-20",
-        "px-4 sm:px-6 lg:px-10 py-3 sm:py-4 bg-white border-t-2 border-gray-100 select-none",
+        "px-4 sm:px-6 lg:px-10 py-3 sm:py-4 bg-white select-none",
+        "shadow-[0_-12px_30px_rgba(0,0,0,0.06)]",
         "transition-opacity duration-200",
         controlsClass,
       ].join(" ")}
