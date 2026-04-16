@@ -8,6 +8,9 @@ interface NavigationProps {
   slideTitle: string;
   controlsVisible: boolean;
   showLeftAccent?: boolean;
+  onExportPdf: () => void;
+  exporting: boolean;
+  exportLabel?: string;
 }
 
 export default function Navigation({
@@ -20,6 +23,9 @@ export default function Navigation({
   slideTitle,
   controlsVisible,
   showLeftAccent,
+  onExportPdf,
+  exporting,
+  exportLabel,
 }: NavigationProps) {
   const controlsClass = controlsVisible
     ? "opacity-100 pointer-events-auto"
@@ -86,7 +92,58 @@ export default function Navigation({
         </div>
 
         {/* Next */}
-        <div className="flex justify-end">
+        <div className="flex justify-end items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            onClick={onExportPdf}
+            disabled={exporting}
+            className={[
+              "rounded-xl shadow-sm border-2 border-gray-100 bg-white text-gray-800",
+              "w-11 h-11 sm:w-12 sm:h-12 inline-flex items-center justify-center",
+              "hover:scale-105 active:scale-95 transition-all",
+              exporting ? "opacity-60 cursor-wait" : "",
+            ].join(" ")}
+            aria-label="Baixar PDF"
+            title={exportLabel ?? "Baixar PDF"}
+          >
+            {exporting ? (
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                className="animate-spin"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  opacity="0.25"
+                />
+                <path
+                  d="M21 12a9 9 0 0 0-9-9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  d="M12 3v9m0 0 3.5-3.5M12 12 8.5 8.5M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </button>
           <button
             onClick={onNext}
             disabled={current === total - 1}

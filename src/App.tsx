@@ -242,33 +242,6 @@ export default function App() {
           boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06)",
         }}
       >
-        <button
-          type="button"
-          onClick={exportToPdf}
-          disabled={exporting}
-          className={[
-            "nav-autohide absolute top-4 right-4 z-20",
-            "rounded-xl font-bold shadow-sm border-2 border-gray-100 bg-white text-gray-800",
-            "px-3 py-2 text-sm sm:px-4 sm:py-2",
-            "hover:scale-105 active:scale-95 transition-all",
-            exporting ? "opacity-60 cursor-wait" : "",
-            controlsShouldShow ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
-          ].join(" ")}
-          aria-label="Exportar apresentacao como PDF"
-        >
-          <span className="hidden sm:inline">
-            {exporting && exportProgress
-              ? `Exportando ${exportProgress.current}/${exportProgress.total}`
-              : "Exportar PDF"}
-          </span>
-          <span className="sm:hidden">PDF</span>
-        </button>
-        {exportError && (
-          <div className="absolute top-16 right-4 z-20 text-xs font-semibold text-red-600 bg-white border-2 border-red-100 rounded-xl px-3 py-2 shadow-sm">
-            {exportError}
-          </div>
-        )}
-
         {/* Slide area */}
         <div ref={slideAreaRef} className="flex-1 relative overflow-hidden">
           {slides.map((s, i) => {
@@ -306,6 +279,15 @@ export default function App() {
           slideTitle={slide.title}
           controlsVisible={controlsShouldShow}
           showLeftAccent={slide.type === "cover"}
+          onExportPdf={exportToPdf}
+          exporting={exporting}
+          exportLabel={
+            exporting && exportProgress
+              ? `Exportando ${exportProgress.current}/${exportProgress.total}`
+              : exportError
+                ? exportError
+                : "Baixar PDF"
+          }
         />
       </div>
 
