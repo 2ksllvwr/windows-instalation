@@ -1,66 +1,86 @@
 # windows-instalation
 
-Uma apresentacao tecnica (estilo slides) sobre **instalacao do Windows 10/11**, do pendrive bootavel ate os ajustes finais.
+Apresentação técnica (estilo slides) sobre **instalação do Windows 10/11**, do pendrive bootável até os ajustes finais.
 
-Se voce trabalha com TI, formatacao, suporte ou so quer instalar o Windows do jeito certo, a ideia aqui e guiar o processo com boas praticas: BIOS/UEFI, particionamento, instalacao limpa, drivers essenciais e otimizacao basica.
+Se você trabalha com TI, suporte, formatação de computadores ou quer instalar o Windows com mais segurança, esta apresentação organiza o processo em um fluxo claro, com boas práticas e pontos de atenção.
 
-## Conteudo
+<a id="conteudo"></a>
+## Conteúdo
 
-- [Comecar](#comecar)
-- [Build / Preview](#build--preview)
-- [Como navegar](#como-navegar)
-- [Exportar PDF](#exportar-pdf)
-- [Editar conteudo](#editar-conteudo)
-- [Sobre a apresentacao](#sobre-a-apresentacao-para-o-publico)
-- [Estrutura do projeto](#estrutura-do-projeto)
+- [Sobre a apresentação](#sobre)
+- [Começar](#comecar)
+- [Build e preview](#build)
+- [Como navegar](#navegar)
+- [Exportar PDF](#pdf)
+- [Editar conteúdo](#editar)
+- [Estrutura do projeto](#estrutura)
 - [Stack](#stack)
-- [Deploy](#deploy-github-pages)
+- [Deploy (GitHub Pages)](#deploy)
 
-## Comecar
+<a id="sobre"></a>
+## Sobre a apresentação (para o público)
+
+Instalar o Windows parece simples, mas pequenos erros no caminho custam caro: boot configurado errado, instalação em modo incorreto (UEFI/Legacy), particionamento mal feito, drivers faltando e desempenho abaixo do esperado.
+
+O objetivo desta apresentação é guiar do início ao fim, com foco em:
+
+- preparar o pendrive bootável e a ISO correta
+- configurar BIOS/UEFI e ordem de boot com segurança
+- executar uma instalação limpa e particionar o disco do jeito certo
+- finalizar com drivers essenciais, otimização básica e monitoramento
+
+<a id="comecar"></a>
+## Começar
+
+Requisitos: Node.js (LTS recomendado) e npm.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Depois abra a URL que o Vite mostrar (geralmente `http://localhost:5173`).
+Depois, abra a URL que o Vite mostrar (geralmente `http://localhost:5173`).
 
-## Build / Preview
+<a id="build"></a>
+## Build e preview
 
 ```bash
 npm run build
 npm run preview
 ```
 
-- O build sai em `dist/` (single-file `dist/index.html`).
-- Voce tambem pode abrir `dist/index.html` direto no navegador.
+- O build sai em `dist/` (arquivo único: `dist/index.html`).
+- Você também pode abrir `dist/index.html` direto no navegador.
 
+<a id="navegar"></a>
 ## Como navegar
 
-- Teclado: `<-` `->` (ou `cima` `baixo`) e `Espaco`
-- Mouse: passe o mouse por cima para mostrar os controles (em touch/mobile eles ficam visiveis)
+- Teclado: `<-` `->` (ou `cima` `baixo`) e `Espaço`
+- Mouse: mova o mouse por cima para mostrar os controles (em touch/mobile eles ficam visíveis)
 
 <details>
   <summary><strong>Atalhos</strong> (clique para abrir)</summary>
 
-  - `->` / `baixo` / `Espaco`: proximo slide
+  - `->` / `baixo` / `Espaço`: próximo slide
   - `<-` / `cima`: slide anterior
 </details>
 
+<a id="pdf"></a>
 ## Exportar PDF
 
-Dentro da apresentacao existe um botao **Exportar PDF** que gera um `apresentacao.pdf` com todos os slides.
+Dentro da apresentação existe um botão **Exportar PDF** que gera um `apresentacao.pdf` com todos os slides.
 
 <details>
   <summary><strong>Dicas</strong> (clique para abrir)</summary>
 
-  - O PDF e gerado slide a slide (pode demorar alguns segundos).
-  - Recomendado exportar no Chrome/Edge (melhor compatibilidade).
+  - O PDF é gerado slide a slide; em máquinas mais lentas pode demorar alguns segundos.
+  - Recomendamos exportar no Chrome/Edge (melhor compatibilidade).
 </details>
 
-## Editar conteudo
+<a id="editar"></a>
+## Editar conteúdo
 
-O conteudo principal dos slides fica em:
+O conteúdo principal dos slides fica em:
 
 - `src/slides.ts`
 
@@ -80,18 +100,7 @@ E os templates visuais ficam em:
   - `closing`: fechamento / resumo
 </details>
 
-## Sobre a apresentacao (para o publico)
-
-O objetivo e ser direto e pratico: voce acompanha um fluxo completo de instalacao do Windows com foco em evitar erros comuns (boot errado, particao incorreta, drivers faltando) e terminar com um sistema pronto para uso.
-
-Para apresentar para outras pessoas, o roteiro segue um caminho claro:
-
-- pre-requisitos e download da ISO
-- criacao do pendrive bootavel
-- configuracao de boot (BIOS/UEFI)
-- instalacao e particionamento
-- pos-instalacao (drivers, otimizacao e monitoramento)
-
+<a id="estrutura"></a>
 ## Estrutura do projeto
 
 ```text
@@ -107,6 +116,7 @@ src/
   utils/
 ```
 
+<a id="stack"></a>
 ## Stack
 
 - React + TypeScript
@@ -114,6 +124,7 @@ src/
 - Tailwind CSS
 - Export PDF: `html2canvas` + `jspdf`
 
+<a id="deploy"></a>
 ## Deploy (GitHub Pages)
 
 <details>
@@ -122,6 +133,5 @@ src/
   1. Rode `npm run build`
   2. Configure o GitHub Pages para servir a pasta `dist/` (ou use uma action de deploy)
 
-  Observacao: este projeto gera `dist/index.html` single-file (bom para hospedar).
+  Observação: este projeto gera `dist/index.html` single-file (bom para hospedar).
 </details>
-
