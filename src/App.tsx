@@ -137,6 +137,10 @@ export default function App() {
     const h = 900;
 
     const nextFrame = () => new Promise<void>((r) => requestAnimationFrame(() => r()));
+    const allowPaint = async () => {
+      await nextFrame();
+      await new Promise<void>((r) => window.setTimeout(r, 0));
+    };
 
     setExporting(true);
     setExportProgress({ current: 0, total: slides.length });
@@ -144,12 +148,14 @@ export default function App() {
     setExportSlideIndex(0);
 
     try {
+      // Give React a moment to paint the exporting UI before heavy work begins.
+      await allowPaint();
+
       // Wait for fonts + initial render of the export frame.
       const fonts = (document as Document & { fonts?: { ready?: Promise<unknown> } }).fonts;
       if (fonts?.ready) await fonts.ready;
 
-      await nextFrame();
-      await nextFrame();
+      await allowPaint();
 
       const pdf = new jsPDF({ orientation: "landscape", unit: "px", format: [w, h] });
 
@@ -157,8 +163,10 @@ export default function App() {
         setExportProgress({ current: i + 1, total: slides.length });
         setExportSlideIndex(i);
 
-        await nextFrame();
-        await nextFrame();
+        // Ensure the frame updates are visible and let the spinner animate a bit
+        // before each expensive capture step.
+        await allowPaint();
+        await allowPaint();
 
         const frame = exportFrameRef.current;
         if (!frame) throw new Error("Export frame not mounted");
@@ -208,6 +216,9 @@ export default function App() {
             doc.head.appendChild(style);
           },
         });
+
+        // Yield once more so the UI doesn't appear stuck between slides.
+        await allowPaint();
 
         const imgData = canvas.toDataURL("image/jpeg", 0.92);
         if (i > 0) pdf.addPage([w, h], "landscape");
