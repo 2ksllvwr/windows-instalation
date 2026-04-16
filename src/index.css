@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* Touch devices don't have hover/mousemove; keep nav controls reachable. */
+@media (hover: none) {
+  .nav-autohide {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
