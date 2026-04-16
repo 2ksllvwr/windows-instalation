@@ -1,8 +1,22 @@
 # windows-instalation
 
-Apresentação técnica (estilo slides) sobre **instalação do Windows** — feita com **React + Vite + Tailwind CSS**.
+Uma apresentacao tecnica (estilo slides) sobre **instalacao do Windows 10/11**, do pendrive bootavel ate os ajustes finais.
 
-## Começar
+Se voce trabalha com TI, formatacao, suporte ou so quer instalar o Windows do jeito certo, a ideia aqui e guiar o processo com boas praticas: BIOS/UEFI, particionamento, instalacao limpa, drivers essenciais e otimizacao basica.
+
+## Conteudo
+
+- [Comecar](#comecar)
+- [Build / Preview](#build--preview)
+- [Como navegar](#como-navegar)
+- [Exportar PDF](#exportar-pdf)
+- [Editar conteudo](#editar-conteudo)
+- [Sobre a apresentacao](#sobre-a-apresentacao-para-o-publico)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Stack](#stack)
+- [Deploy](#deploy-github-pages)
+
+## Comecar
 
 ```bash
 npm ci
@@ -19,34 +33,34 @@ npm run preview
 ```
 
 - O build sai em `dist/` (single-file `dist/index.html`).
-- Você também pode abrir `dist/index.html` direto no navegador.
+- Voce tambem pode abrir `dist/index.html` direto no navegador.
 
-## Como Navegar
+## Como navegar
 
-- Teclado: `←` `→` (ou `↑` `↓`) e `Espaço`
-- Mouse: passe o mouse por cima para mostrar os controles (em touch/mobile eles ficam visíveis)
+- Teclado: `<-` `->` (ou `cima` `baixo`) e `Espaco`
+- Mouse: passe o mouse por cima para mostrar os controles (em touch/mobile eles ficam visiveis)
 
 <details>
   <summary><strong>Atalhos</strong> (clique para abrir)</summary>
 
-  - `→` / `↓` / `Espaço`: próximo slide
-  - `←` / `↑`: slide anterior
+  - `->` / `baixo` / `Espaco`: proximo slide
+  - `<-` / `cima`: slide anterior
 </details>
 
 ## Exportar PDF
 
-Dentro da apresentação existe um botão **Exportar PDF** que gera um `apresentacao.pdf` com todos os slides.
+Dentro da apresentacao existe um botao **Exportar PDF** que gera um `apresentacao.pdf` com todos os slides.
 
 <details>
   <summary><strong>Dicas</strong> (clique para abrir)</summary>
 
-  - O PDF é gerado slide a slide (pode demorar alguns segundos).
+  - O PDF e gerado slide a slide (pode demorar alguns segundos).
   - Recomendado exportar no Chrome/Edge (melhor compatibilidade).
 </details>
 
-## Editar Conteúdo
+## Editar conteudo
 
-O conteúdo principal dos slides fica em:
+O conteudo principal dos slides fica em:
 
 - `src/slides.ts`
 
@@ -66,7 +80,19 @@ E os templates visuais ficam em:
   - `closing`: fechamento / resumo
 </details>
 
-## Estrutura do Projeto
+## Sobre a apresentacao (para o publico)
+
+O objetivo e ser direto e pratico: voce acompanha um fluxo completo de instalacao do Windows com foco em evitar erros comuns (boot errado, particao incorreta, drivers faltando) e terminar com um sistema pronto para uso.
+
+Para apresentar para outras pessoas, o roteiro segue um caminho claro:
+
+- pre-requisitos e download da ISO
+- criacao do pendrive bootavel
+- configuracao de boot (BIOS/UEFI)
+- instalacao e particionamento
+- pos-instalacao (drivers, otimizacao e monitoramento)
+
+## Estrutura do projeto
 
 ```text
 src/
@@ -96,5 +122,6 @@ src/
   1. Rode `npm run build`
   2. Configure o GitHub Pages para servir a pasta `dist/` (ou use uma action de deploy)
 
-  Observação: este projeto gera `dist/index.html` single-file (bom para hospedar).
+  Observacao: este projeto gera `dist/index.html` single-file (bom para hospedar).
 </details>
+
