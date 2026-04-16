@@ -28,7 +28,8 @@ export default function Navigation({
   return (
     <div
       className={[
-        "nav-autohide px-4 sm:px-6 lg:px-10 py-3 sm:py-4 bg-white border-t-2 border-gray-100 select-none relative",
+        "nav-autohide absolute bottom-0 left-0 right-0 z-20",
+        "px-4 sm:px-6 lg:px-10 py-3 sm:py-4 bg-white border-t-2 border-gray-100 select-none",
         "transition-opacity duration-200",
         controlsClass,
       ].join(" ")}

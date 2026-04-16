@@ -95,12 +95,10 @@ export default function App() {
     const update = () => setAlwaysShowControls(mql.matches);
     update();
 
-    if ("addEventListener" in mql) mql.addEventListener("change", update);
-    else mql.addListener(update);
+    mql.addEventListener("change", update);
 
     return () => {
-      if ("removeEventListener" in mql) mql.removeEventListener("change", update);
-      else mql.removeListener(update);
+      mql.removeEventListener("change", update);
     };
   }, []);
 
@@ -147,11 +145,8 @@ export default function App() {
 
     try {
       // Wait for fonts + initial render of the export frame.
-      // @ts-expect-error - FontFaceSet isn't always in TS lib config
-      if (document.fonts?.ready) {
-        // @ts-expect-error - FontFaceSet isn't always in TS lib config
-        await document.fonts.ready;
-      }
+      const fonts = (document as Document & { fonts?: { ready?: Promise<unknown> } }).fonts;
+      if (fonts?.ready) await fonts.ready;
 
       await nextFrame();
       await nextFrame();
